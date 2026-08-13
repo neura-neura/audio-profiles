@@ -153,3 +153,7 @@ Diagnostic logs are written to `%LOCALAPPDATA%\AudioProfiles\logs\audio-profiles
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Author
+
+Created by [neura-neura](https://github.com/neura-neura). Source and releases live in [neura-neura/audio-profiles](https://github.com/neura-neura/audio-profiles).

@@ -44,6 +44,9 @@
             <StackPanel Spacing="8">
                 <TextBlock x:Name="AboutTitle" Style="{StaticResource PageTitleStyle}" />
                 <TextBlock x:Name="AboutBody" Style="{StaticResource SectionBodyStyle}" />
+                <TextBlock x:Name="AboutAuthor" Style="{StaticResource SectionBodyStyle}" />
+                <HyperlinkButton x:Name="GitHubProfileLink" Click="GitHubProfileLink_Click" />
+                <HyperlinkButton x:Name="GitHubRepoLink" Click="GitHubRepoLink_Click" />
                 <Button x:Name="LogsButton" Click="LogsButton_Click" />
             </StackPanel>
         </StackPanel>

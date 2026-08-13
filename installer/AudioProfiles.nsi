@@ -8,6 +8,7 @@ RequestExecutionLevel user
 !include "LogicLib.nsh"
 
 Name "Audio Profiles"
+BrandingText "Audio Profiles by neura-neura"
 OutFile "..\dist\AudioProfilesSetup-1.0.0.exe"
 InstallDir "$LOCALAPPDATA\Audio Profiles"
 InstallDirRegKey HKCU "Software\AudioProfiles" "InstallDir"
@@ -18,7 +19,7 @@ ShowUninstDetails show
 !define MUI_ICON "..\src\AudioProfiles\Assets\AppIcon.ico"
 !define MUI_UNICON "..\src\AudioProfiles\Assets\AppIcon.ico"
 !define MUI_WELCOMEPAGE_TITLE "Install Audio Profiles"
-!define MUI_WELCOMEPAGE_TEXT "Audio Profiles lets you switch Windows speakers and microphones with one click. No administrator account is required."
+!define MUI_WELCOMEPAGE_TEXT "Audio Profiles lets you switch Windows speakers and microphones with one click. Created by neura-neura. No administrator account is required."
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION LaunchApp
@@ -49,7 +50,10 @@ Section "Install"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayName" "Audio Profiles"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayIcon" "$INSTDIR\AudioProfiles.exe"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayVersion" "1.0.0"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "Publisher" "Audio Profiles"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "Publisher" "neura-neura"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "URLInfoAbout" "https://github.com/neura-neura/audio-profiles"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "HelpLink" "https://github.com/neura-neura"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "URLUpdateInfo" "https://github.com/neura-neura/audio-profiles/releases"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "InstallLocation" "$INSTDIR"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "UninstallString" "$INSTDIR\Uninstall.exe"
   WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "NoModify" 1

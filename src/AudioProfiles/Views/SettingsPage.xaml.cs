@@ -35,6 +35,9 @@ public sealed partial class SettingsPage : Page
         InputCommunicationsLabel.Text = Loc.Format("InputRole", Loc.Get("RoleCalls"));
         OpenAdvancedProfileButton.Content = Loc.Get("OpenProfileAdvanced");
         AboutTitle.Text = Loc.Get("About");
+        AboutAuthor.Text = Loc.Get("AboutAuthor");
+        GitHubProfileLink.Content = Loc.Get("OpenGitHubProfile");
+        GitHubRepoLink.Content = Loc.Get("OpenGitHubRepo");
         LogsButton.Content = Loc.Get("OpenLogs");
         ThemeBox.ItemsSource = new[]
         {
@@ -312,6 +315,25 @@ public sealed partial class SettingsPage : Page
         Process.Start(new ProcessStartInfo
         {
             FileName = Controller.Log.DirectoryPath,
+            UseShellExecute = true
+        });
+    }
+
+    private void GitHubProfileLink_Click(object sender, RoutedEventArgs e)
+    {
+        OpenUrl(AppIdentity.AuthorUrl);
+    }
+
+    private void GitHubRepoLink_Click(object sender, RoutedEventArgs e)
+    {
+        OpenUrl(AppIdentity.RepositoryUrl);
+    }
+
+    private static void OpenUrl(string url)
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = url,
             UseShellExecute = true
         });
     }

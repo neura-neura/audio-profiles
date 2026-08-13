@@ -121,7 +121,16 @@
     <value>Acerca de</value>
   </data>
   <data name="AboutBody" xml:space="preserve">
-    <value>Audio Profiles cambia los altavoces y el micrófono de Windows con un clic. Versión {0}</value>
+    <value>Audio Profiles cambia los altavoces y el micrófono de Windows con un clic. Versión {0}. Hecho por neura-neura.</value>
+  </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Autor: neura-neura</value>
+  </data>
+  <data name="OpenGitHubProfile" xml:space="preserve">
+    <value>Abrir perfil de GitHub</value>
+  </data>
+  <data name="OpenGitHubRepo" xml:space="preserve">
+    <value>Abrir repositorio de GitHub</value>
   </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Abrir carpeta de registros</value>

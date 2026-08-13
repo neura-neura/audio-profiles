@@ -9,6 +9,9 @@ internal static class AppIdentity
 {
     public const string AppUserModelId = "AudioProfiles.Desktop";
     public const string DisplayName = "Audio Profiles";
+    public const string Author = "neura-neura";
+    public const string AuthorUrl = "https://github.com/neura-neura";
+    public const string RepositoryUrl = "https://github.com/neura-neura/audio-profiles";
 
     public static void Initialize()
     {

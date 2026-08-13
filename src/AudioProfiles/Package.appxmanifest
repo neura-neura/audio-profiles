@@ -19,7 +19,7 @@
 
   <Properties>
     <DisplayName>Audio Profiles</DisplayName>
-    <PublisherDisplayName>Audio Profiles</PublisherDisplayName>
+    <PublisherDisplayName>neura-neura</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
