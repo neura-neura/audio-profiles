@@ -1,0 +1,10 @@
+﻿from pathlib import Path
+p = Path(r'C:\\Users\\neura\\repos\\audio-device-switcher\\src\\AudioProfiles\\Services\\NotificationService.cs')
+text = p.read_text(encoding='utf-8')
+text = text.replace('    private bool _registered;\n    private bool _nativeFallback;\n', '    private bool _registered;\n')
+text = text.replace('                _nativeFallback = true;\n                _log.Info("Windows App SDK notifications are not supported. Using native Windows toasts.");\n', '                _log.Info("Windows App SDK notifications are not supported. Using native Windows toasts.");\n')
+text = text.replace('            _registered = true;\n            _nativeFallback = false;\n            _log.Info(AppIdentity.IsPackaged()\n', '            _registered = true;\n            _log.Info(AppIdentity.IsPackaged()\n')
+text = text.replace('            _registered = false;\n            _nativeFallback = true;\n            _log.Warn', '            _registered = false;\n            _log.Warn')
+text = text.replace('            NativeToast.Show(title, body);\n            _nativeFallback = true;\n            _log.Info', '            NativeToast.Show(title, body);\n            _log.Info')
+p.write_text(text, encoding='utf-8')
+print('NotificationService cleaned')

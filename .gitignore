@@ -1,0 +1,23 @@
+# Build
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.binlog
+
+# Local packaging scratch
+installer/payload/
+tmp/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Temporary preview files
+assets/_view.jpg
+assets/screenshot-preview.jpg
+assets/screenshot-print.png
+assets/screenshot-screen.png
+assets/screenshot-dpi.png
