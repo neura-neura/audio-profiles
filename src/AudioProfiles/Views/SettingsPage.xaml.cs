@@ -4,6 +4,7 @@ using AudioProfiles.Models;
 using AudioProfiles.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace AudioProfiles.Views;
@@ -35,9 +36,6 @@ public sealed partial class SettingsPage : Page
         InputCommunicationsLabel.Text = Loc.Format("InputRole", Loc.Get("RoleCalls"));
         OpenAdvancedProfileButton.Content = Loc.Get("OpenProfileAdvanced");
         AboutTitle.Text = Loc.Get("About");
-        AboutAuthor.Text = Loc.Get("AboutAuthor");
-        GitHubProfileLink.Content = Loc.Get("OpenGitHubProfile");
-        GitHubRepoLink.Content = Loc.Get("OpenGitHubRepo");
         LogsButton.Content = Loc.Get("OpenLogs");
         ThemeBox.ItemsSource = new[]
         {
@@ -62,7 +60,7 @@ public sealed partial class SettingsPage : Page
         BindAdvancedProfiles();
         BindAdvancedRoles();
         var version = typeof(App).Assembly.GetName().Version?.ToString(3) ?? "1.0.0";
-        AboutBody.Text = Loc.Format("AboutBody", version);
+        BindAboutText(version);
         _ready = true;
     }
 
@@ -319,14 +317,21 @@ public sealed partial class SettingsPage : Page
         });
     }
 
-    private void GitHubProfileLink_Click(object sender, RoutedEventArgs e)
+    private void BindAboutText(string version)
     {
-        OpenUrl(AppIdentity.AuthorUrl);
+        var authorLink = new Hyperlink();
+        authorLink.Inlines.Add(new Run { Text = AppIdentity.Author });
+        authorLink.Click += AboutAuthorLink_Click;
+
+        AboutBody.Inlines.Clear();
+        AboutBody.Inlines.Add(new Run { Text = Loc.Format("AboutBodyPrefix", version) });
+        AboutBody.Inlines.Add(authorLink);
+        AboutBody.Inlines.Add(new Run { Text = Loc.Get("AboutBodySuffix") });
     }
 
-    private void GitHubRepoLink_Click(object sender, RoutedEventArgs e)
+    private void AboutAuthorLink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
     {
-        OpenUrl(AppIdentity.RepositoryUrl);
+        OpenUrl(AppIdentity.AuthorUrl);
     }
 
     private static void OpenUrl(string url)
