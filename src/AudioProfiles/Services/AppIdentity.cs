@@ -12,6 +12,9 @@ internal static class AppIdentity
     public const string Author = "neura-neura";
     public const string AuthorUrl = "https://github.com/neura-neura";
     public const string RepositoryUrl = "https://github.com/neura-neura/audio-profiles";
+    public const string ReleasesApiUrl = "https://api.github.com/repos/neura-neura/audio-profiles/releases/latest";
+    public const string ReleasesPageUrl = "https://github.com/neura-neura/audio-profiles/releases";
+    public const string InstallerAssetName = "AudioProfilesSetup";
 
     public static void Initialize()
     {

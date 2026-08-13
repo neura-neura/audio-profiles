@@ -129,6 +129,48 @@
   <data name="AboutBodySuffix" xml:space="preserve">
     <value>.</value>
   </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Checking GitHub for a newer version...</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>You already have the latest version ({0}).</value>
+  </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>Install this update?</value>
+  </data>
+  <data name="UpdateAvailableBody" xml:space="preserve">
+    <value>Version {1} is available. You have {0}. Audio Profiles will close, replace itself, and reopen.</value>
+  </data>
+  <data name="InstallUpdate" xml:space="preserve">
+    <value>Download and install</value>
+  </data>
+  <data name="UpdateCancelled" xml:space="preserve">
+    <value>Update cancelled.</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Downloading the new installer...</value>
+  </data>
+  <data name="UpdateDownloadingPercent" xml:space="preserve">
+    <value>Downloading the new installer... {0}%</value>
+  </data>
+  <data name="UpdateInstalling" xml:space="preserve">
+    <value>Starting the installer. Audio Profiles will close and reopen.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>The update could not be checked or downloaded. Try again later.</value>
+  </data>
+  <data name="UpdateMissingInstaller" xml:space="preserve">
+    <value>A newer version was found, but its installer is missing on GitHub.</value>
+  </data>
+  <data name="UpdateInvalidRelease" xml:space="preserve">
+    <value>GitHub returned a release that Audio Profiles could not read.</value>
+  </data>
+  <data name="UpdateGithubError" xml:space="preserve">
+    <value>GitHub could not be reached right now. Try again later.</value>
+  </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Open log folder</value>
   </data>

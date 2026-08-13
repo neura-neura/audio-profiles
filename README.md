@@ -19,12 +19,13 @@ Audio Profiles is a simple Windows 11 app for switching speakers and microphones
 - Light, Dark, and System themes
 - English and Spanish interface text
 - Remembers profiles even if a device is unplugged
+- In-app update check from the latest GitHub release
 
 ## Installation
 
 Download the latest installer from the [Releases](https://github.com/neura-neura/audio-profiles/releases) page.
 
-1. Run `AudioProfilesSetup-1.0.0.exe`.
+1. Run `AudioProfilesSetup-1.0.1.exe`.
 2. Keep the default folder, or choose another per-user location.
 3. On the last page, keep **Open Audio Profiles** checked if you want the app to start immediately, and optionally check **Create a desktop shortcut**.
 
@@ -91,6 +92,7 @@ Left-click the icon to open the window.
 - **Show notifications when switching profiles:** on by default
 - **Start minimized in the tray:** optional
 - **Advanced:** optional detailed logs, and per-role speaker/microphone assignment for a selected profile
+- **Check for updates:** looks at the latest GitHub release and can download the installer to replace this copy
 
 ## Building from Source
 
@@ -119,7 +121,7 @@ Publish and installer:
 powershell -ExecutionPolicy Bypass -File tools\build-installer.ps1
 ```
 
-The finished installer is written to `dist\AudioProfilesSetup-1.0.0.exe`.
+The finished installer is written to `dist\AudioProfilesSetup-1.0.1.exe`.
 
 You can also confirm real device switching with:
 
@@ -156,4 +158,4 @@ MIT. See [LICENSE](LICENSE).
 
 ## Author
 
-Created by [neura-neura](https://github.com/neura-neura). Source and releases live in [neura-neura/audio-profiles](https://github.com/neura-neura/audio-profiles).
+Created by [neura-neura](https://github.com/neura-neura). The in-app author link and source live at [neura-neura/audio-profiles](https://github.com/neura-neura/audio-profiles).

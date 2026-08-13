@@ -44,7 +44,12 @@
             <StackPanel Spacing="8">
                 <TextBlock x:Name="AboutTitle" Style="{StaticResource PageTitleStyle}" />
                 <TextBlock x:Name="AboutBody" Style="{StaticResource SectionBodyStyle}" TextWrapping="Wrap" />
-                <Button x:Name="LogsButton" Click="LogsButton_Click" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button x:Name="UpdateButton" Click="UpdateButton_Click" />
+                    <Button x:Name="LogsButton" Click="LogsButton_Click" />
+                </StackPanel>
+                <TextBlock x:Name="UpdateStatus" Style="{StaticResource SectionBodyStyle}" TextWrapping="Wrap" />
+                <ProgressBar x:Name="UpdateProgress" Minimum="0" Maximum="100" Visibility="Collapsed" IsIndeterminate="True" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

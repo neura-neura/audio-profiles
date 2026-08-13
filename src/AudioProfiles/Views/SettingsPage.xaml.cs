@@ -12,11 +12,14 @@ namespace AudioProfiles.Views;
 public sealed partial class SettingsPage : Page
 {
     private AppController Controller => App.Instance.Controller;
+    private readonly UpdateService _updates;
     private bool _ready;
+    private bool _updating;
 
     public SettingsPage()
     {
         InitializeComponent();
+        _updates = new UpdateService(Controller.Log);
         TitleText.Text = Loc.Get("Settings");
         ThemeLabel.Text = Loc.Get("Theme");
         StartupSwitch.Header = Loc.Get("StartWithWindows");
@@ -36,7 +39,9 @@ public sealed partial class SettingsPage : Page
         InputCommunicationsLabel.Text = Loc.Format("InputRole", Loc.Get("RoleCalls"));
         OpenAdvancedProfileButton.Content = Loc.Get("OpenProfileAdvanced");
         AboutTitle.Text = Loc.Get("About");
+        UpdateButton.Content = Loc.Get("CheckForUpdates");
         LogsButton.Content = Loc.Get("OpenLogs");
+        UpdateStatus.Text = string.Empty;
         ThemeBox.ItemsSource = new[]
         {
             new ThemeChoice(AppTheme.System, Loc.Get("ThemeSystem")),
@@ -331,8 +336,90 @@ public sealed partial class SettingsPage : Page
 
     private void AboutAuthorLink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
     {
-        OpenUrl(AppIdentity.AuthorUrl);
+        OpenUrl(AppIdentity.RepositoryUrl);
     }
+
+    private async void UpdateButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_updating)
+        {
+            return;
+        }
+
+        _updating = true;
+        UpdateButton.IsEnabled = false;
+        UpdateProgress.Visibility = Visibility.Visible;
+        UpdateProgress.IsIndeterminate = true;
+        UpdateStatus.Text = Loc.Get("UpdateChecking");
+
+        try
+        {
+            var check = await _updates.CheckForUpdateAsync();
+            if (!check.Succeeded)
+            {
+                UpdateStatus.Text = UpdateErrorText(check.ErrorCode);
+                return;
+            }
+
+            if (!check.IsUpdateAvailable)
+            {
+                UpdateStatus.Text = Loc.Format("UpdateUpToDate", check.CurrentVersion.ToString(3));
+                return;
+            }
+
+            var latest = check.LatestVersion?.ToString(3) ?? check.TagName ?? "new";
+            var confirm = new ContentDialog
+            {
+                XamlRoot = XamlRoot,
+                Title = Loc.Get("UpdateAvailableTitle"),
+                Content = Loc.Format("UpdateAvailableBody", check.CurrentVersion.ToString(3), latest),
+                PrimaryButtonText = Loc.Get("InstallUpdate"),
+                CloseButtonText = Loc.Get("Cancel"),
+                DefaultButton = ContentDialogButton.Primary
+            };
+
+            if (await confirm.ShowAsync() != ContentDialogResult.Primary)
+            {
+                UpdateStatus.Text = Loc.Get("UpdateCancelled");
+                return;
+            }
+
+            UpdateStatus.Text = Loc.Get("UpdateDownloading");
+            UpdateProgress.IsIndeterminate = false;
+            UpdateProgress.Value = 0;
+            var progress = new Progress<double>(value =>
+            {
+                UpdateProgress.Value = value * 100;
+                UpdateStatus.Text = Loc.Format("UpdateDownloadingPercent", (int)Math.Round(value * 100));
+            });
+            var installer = await _updates.DownloadInstallerAsync(check, progress);
+            UpdateStatus.Text = Loc.Get("UpdateInstalling");
+            UpdateProgress.IsIndeterminate = true;
+            _updates.LaunchInstaller(installer);
+            await Task.Delay(600);
+            App.Instance.ExitApplication();
+        }
+        catch (Exception ex)
+        {
+            Controller.Log.Error("In-app update failed.", ex);
+            UpdateStatus.Text = Loc.Get("UpdateFailed");
+        }
+        finally
+        {
+            _updating = false;
+            UpdateButton.IsEnabled = true;
+            UpdateProgress.Visibility = Visibility.Collapsed;
+            UpdateProgress.IsIndeterminate = true;
+        }
+    }
+
+    private static string UpdateErrorText(string? code) => code switch
+    {
+        "missing-installer" => Loc.Get("UpdateMissingInstaller"),
+        "missing-release" or "invalid-version" => Loc.Get("UpdateInvalidRelease"),
+        "github" => Loc.Get("UpdateGithubError"),
+        _ => Loc.Get("UpdateFailed")
+    };
 
     private static void OpenUrl(string url)
     {

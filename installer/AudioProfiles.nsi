@@ -1,4 +1,4 @@
-﻿Unicode True
+Unicode True
 ManifestDPIAware True
 SetCompressor /SOLID lzma
 RequestExecutionLevel user
@@ -7,15 +7,20 @@ RequestExecutionLevel user
 !include "FileFunc.nsh"
 !include "LogicLib.nsh"
 
+!insertmacro GetParameters
+!insertmacro GetOptions
+
 Name "Audio Profiles"
 BrandingText "Audio Profiles by neura-neura"
-OutFile "..\dist\AudioProfilesSetup-1.0.0.exe"
+OutFile "..\dist\AudioProfilesSetup-1.0.1.exe"
 InstallDir "$LOCALAPPDATA\Audio Profiles"
 InstallDirRegKey HKCU "Software\AudioProfiles" "InstallDir"
 ShowInstDetails show
 ShowUninstDetails show
+Var LaunchAfterInstall
 
 !define MUI_ABORTWARNING
+!define MUI_CUSTOMFUNCTION_ONINIT ParseLaunchFlag
 !define MUI_ICON "..\src\AudioProfiles\Assets\AppIcon.ico"
 !define MUI_UNICON "..\src\AudioProfiles\Assets\AppIcon.ico"
 !define MUI_WELCOMEPAGE_TITLE "Install Audio Profiles"
@@ -36,7 +41,18 @@ ShowUninstDetails show
 !insertmacro MUI_UNPAGE_INSTFILES
 !insertmacro MUI_LANGUAGE "English"
 
+Function ParseLaunchFlag
+  StrCpy $LaunchAfterInstall "0"
+  ${GetParameters} $R0
+  ${GetOptions} $R0 "/LAUNCH" $R1
+  IfErrors +2 0
+    StrCpy $LaunchAfterInstall "1"
+FunctionEnd
+
 Section "Install"
+  DetailPrint "Closing Audio Profiles if it is running..."
+  ExecWait 'taskkill /IM AudioProfiles.exe /F'
+  Sleep 800
   SetOutPath "$INSTDIR"
   File /r "payload\*.*"
 
@@ -49,7 +65,7 @@ Section "Install"
 
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayName" "Audio Profiles"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayIcon" "$INSTDIR\AudioProfiles.exe"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayVersion" "1.0.0"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayVersion" "1.0.1"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "Publisher" "neura-neura"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "URLInfoAbout" "https://github.com/neura-neura/audio-profiles"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "HelpLink" "https://github.com/neura-neura"
@@ -62,6 +78,9 @@ Section "Install"
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
   IntFmt $0 "0x%08X" $0
   WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "EstimatedSize" "$0"
+  ${If} $LaunchAfterInstall == "1"
+    Call LaunchApp
+  ${EndIf}
 SectionEnd
 
 Section "Uninstall"

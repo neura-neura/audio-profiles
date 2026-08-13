@@ -129,6 +129,48 @@
   <data name="AboutBodySuffix" xml:space="preserve">
     <value>.</value>
   </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Buscar actualizaciones</value>
+  </data>
+  <data name="UpdateChecking" xml:space="preserve">
+    <value>Buscando una versión más nueva en GitHub...</value>
+  </data>
+  <data name="UpdateUpToDate" xml:space="preserve">
+    <value>Ya tienes la última versión ({0}).</value>
+  </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>¿Instalar esta actualización?</value>
+  </data>
+  <data name="UpdateAvailableBody" xml:space="preserve">
+    <value>La versión {1} está disponible. Tienes la {0}. Audio Profiles se cerrará, se reemplazará y volverá a abrirse.</value>
+  </data>
+  <data name="InstallUpdate" xml:space="preserve">
+    <value>Descargar e instalar</value>
+  </data>
+  <data name="UpdateCancelled" xml:space="preserve">
+    <value>Actualización cancelada.</value>
+  </data>
+  <data name="UpdateDownloading" xml:space="preserve">
+    <value>Descargando el nuevo instalador...</value>
+  </data>
+  <data name="UpdateDownloadingPercent" xml:space="preserve">
+    <value>Descargando el nuevo instalador... {0}%</value>
+  </data>
+  <data name="UpdateInstalling" xml:space="preserve">
+    <value>Iniciando el instalador. Audio Profiles se cerrará y se reabrirá.</value>
+  </data>
+  <data name="UpdateFailed" xml:space="preserve">
+    <value>No se pudo comprobar o descargar la actualización. Inténtalo más tarde.</value>
+  </data>
+  <data name="UpdateMissingInstaller" xml:space="preserve">
+    <value>Hay una versión más nueva, pero falta su instalador en GitHub.</value>
+  </data>
+  <data name="UpdateInvalidRelease" xml:space="preserve">
+    <value>GitHub devolvió una versión que Audio Profiles no pudo leer.</value>
+  </data>
+  <data name="UpdateGithubError" xml:space="preserve">
+    <value>Ahora mismo no se puede contactar con GitHub. Inténtalo más tarde.</value>
+  </data>
   <data name="OpenLogs" xml:space="preserve">
     <value>Abrir carpeta de registros</value>
   </data>

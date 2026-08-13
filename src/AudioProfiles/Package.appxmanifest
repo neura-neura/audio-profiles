@@ -11,7 +11,7 @@
   <Identity
     Name="AudioProfiles.Desktop"
     Publisher="CN=AudioProfiles"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity
     PhoneProductId="FAB7D87C-FEA3-4101-8321-50FA9F5EF795"
