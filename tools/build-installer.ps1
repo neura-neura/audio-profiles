@@ -30,4 +30,4 @@ if ($LASTEXITCODE -ne 0) {
     throw "makensis failed with exit code $LASTEXITCODE"
 }
 
-Write-Output (Join-Path $dist 'AudioProfilesSetup-1.0.1.exe')
+Write-Output (Join-Path $dist 'AudioProfilesSetup-1.0.2.exe')

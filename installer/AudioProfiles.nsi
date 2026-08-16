@@ -12,7 +12,7 @@ RequestExecutionLevel user
 
 Name "Audio Profiles"
 BrandingText "Audio Profiles by neura-neura"
-OutFile "..\dist\AudioProfilesSetup-1.0.1.exe"
+OutFile "..\dist\AudioProfilesSetup-1.0.2.exe"
 InstallDir "$LOCALAPPDATA\Audio Profiles"
 InstallDirRegKey HKCU "Software\AudioProfiles" "InstallDir"
 ShowInstDetails show
@@ -65,7 +65,7 @@ Section "Install"
 
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayName" "Audio Profiles"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayIcon" "$INSTDIR\AudioProfiles.exe"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayVersion" "1.0.1"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "DisplayVersion" "1.0.2"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "Publisher" "neura-neura"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "URLInfoAbout" "https://github.com/neura-neura/audio-profiles"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\AudioProfiles" "HelpLink" "https://github.com/neura-neura"

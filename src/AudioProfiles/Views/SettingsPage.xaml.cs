@@ -64,7 +64,7 @@ public sealed partial class SettingsPage : Page
         AdvancedLoggingSwitch.IsOn = Controller.Settings.WriteDetailedLogs;
         BindAdvancedProfiles();
         BindAdvancedRoles();
-        var version = typeof(App).Assembly.GetName().Version?.ToString(3) ?? "1.0.0";
+        var version = typeof(App).Assembly.GetName().Version?.ToString(3) ?? "1.0.2";
         BindAboutText(version);
         _ready = true;
     }
