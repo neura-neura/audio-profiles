@@ -25,7 +25,7 @@ Audio Profiles is a simple Windows 11 app for switching speakers and microphones
 
 Download the latest installer from the [Releases](https://github.com/neura-neura/audio-profiles/releases) page.
 
-1. Run `AudioProfilesSetup-1.0.3.exe`.
+1. Run `AudioProfilesSetup-1.0.4.exe`.
 2. Keep the default folder, or choose another per-user location.
 3. On the last page, keep **Open Audio Profiles** checked if you want the app to start immediately, and optionally check **Create a desktop shortcut**.
 
@@ -121,7 +121,7 @@ Publish and installer:
 powershell -ExecutionPolicy Bypass -File tools\build-installer.ps1
 ```
 
-The finished installer is written to `dist\AudioProfilesSetup-1.0.3.exe`.
+The finished installer is written to `dist\AudioProfilesSetup-1.0.4.exe`.
 
 You can also confirm real device switching with:
 
