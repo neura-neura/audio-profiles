@@ -11,7 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 APP_ASSETS = ROOT / "src" / "AudioProfiles" / "Assets"
 TMP = ROOT / "tmp"
-MASTER = ASSETS / "logo.png"
+MASTER = ASSETS / "logo-transparent.png"
+PREVIEW = ASSETS / "logo.png"
+PREVIEW_BACKGROUND = (244, 245, 247, 255)
 
 
 def load_master() -> Image.Image:
@@ -23,6 +25,12 @@ def load_master() -> Image.Image:
 
 def resize_master(master: Image.Image, size: int) -> Image.Image:
     return master.resize((size, size), Image.Resampling.LANCZOS)
+
+
+def preview(master: Image.Image) -> Image.Image:
+    image = Image.new("RGBA", master.size, PREVIEW_BACKGROUND)
+    image.alpha_composite(master)
+    return image
 
 
 def canvas(master: Image.Image, width: int, height: int, icon_size: int) -> Image.Image:
@@ -58,7 +66,7 @@ def write_ico(images: list[Image.Image], path: Path) -> None:
 
 def main() -> None:
     master = load_master()
-    save_png(master, ASSETS / "logo.png")
+    save_png(preview(master), PREVIEW)
 
     save_png(resize_master(master, 512), APP_ASSETS / "Logo.png")
     save_png(resize_master(master, 50), APP_ASSETS / "StoreLogo.png")
