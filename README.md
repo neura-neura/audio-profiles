@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" width="200" alt="Audio Profiles logo">
+  <img src="assets/logo-transparent.png" width="200" alt="Audio Profiles logo">
 </p>
 
 <h1 align="center">Audio Profiles</h1>
